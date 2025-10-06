@@ -42,20 +42,20 @@ const PlayIcon = () => (
   </svg>
 );
 
-const Secion1 = () => {
+const Secion1 = ({secion1IdToScroll}) => {
   // Данные для карточек уроков
   const lessons = [
     {
       title: "Урок 1",
       description: "Разглаживаем морщины",
       imageUrl:
-        "https://images.unsplash.com/photo-1580281657527-47f249e0f4df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZmFjZSx5b2dhLHNraW5jYXJlfHx8fHx8MTcxMTc0MjMyMg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8eW9nYSxzdHJldGNoLGJhY2t8fHx8fHwxNzExNzQyMzc0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
     },
     {
       title: "Урок 2",
       description: "Ликвидируем отеки",
       imageUrl:
-        "https://images.unsplash.com/photo-1607214914272-5c22293d828a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZmFjZSxtYXNzYWdlLHNwYXx8fHx8fDE3MTE3NDIzNDQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8eW9nYSxzdHJldGNoLGJhY2t8fHx8fHwxNzExNzQyMzc0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
     },
     {
       title: "Урок 3",
@@ -66,10 +66,10 @@ const Secion1 = () => {
   ];
 
   const primaryColor = "#2d4156";
-  const bannerImageUrl = "https://i.imgur.com/4qK4R8l.png";
+  const bannerImageUrl = "https://avatars.mds.yandex.net/i?id=f6cc0850100cb0cdbc2f50f9aef6e646_l-9181478-images-thumbs&n=13";
 
   return (
-    <section className="bg-gray-50 pb-1 sm:pb-2 pt-0 sm:pt-0">
+    <section id={secion1IdToScroll} className="bg-gray-50 pb-1 sm:pb-2 pt-0 sm:pt-0">
       <div className="container mx-auto px-4 relative max-w-7xl">
         {/* --- СЛАЙДЕР БАННЕРОВ (ОСТАВЛЯЕМ БЕЗ ИЗМЕНЕНИЙ) --- */}
         <Swiper
@@ -160,12 +160,12 @@ const Secion1 = () => {
               <h3 className="text-xl md:text-2xl font-bold text-[#444] max-w-xs leading-snug">
               Посмотри бесплатные короткие видео и заработай первые 500₽
               </h3>
-              <button
-                className="mt-6 px-10 py-3 text-white font-semibold rounded-md transition-colors shadow-lg"
+              <a href="#videoCoursScrioling"
+                className="mt-6 px-10 py-3 text-center text-white font-semibold rounded-md transition-colors shadow-lg"
                 style={{ backgroundColor: primaryColor }}
               >
                 Смотреть
-              </button>
+              </a>
             </div>
 
             {/* --- ПРАВЫЙ БЛОК: КАРТОЧКИ УРОКОВ (ДЕКСТОПНАЯ ВЕРСИЯ) --- */}

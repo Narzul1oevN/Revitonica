@@ -196,9 +196,9 @@ const CourseCard = ({ course }) => {
 //              КОМПОНЕНТ СЕКЦИИ (Secion5) СО SWIPER JS
 // *****************************************************************
 
-const Secion5 = () => {
+const Secion5 = ({videoCours}) => {
   return (
-    <section className="py-12 md:py-20 bg-gray-50 font-sans">
+    <section id={videoCours} className="py-12 md:py-20 bg-gray-50 font-sans">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         
         {/* Заголовок секции */}

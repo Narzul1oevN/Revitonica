@@ -15,19 +15,20 @@ import Secion12 from './secions/secion12';
 import Secion13 from './secions/secion13';
 import Secion14 from './secions/secion14';
 import Footer from './secions/footer';
+import ExitVideoPopup from './components/bodyComponents/exitIntentPopup';
 
 const App = () => {
   return (
     <div className='w-full h-auto '>
       <Head />
-      <Secion1/>
-      <Secion2/>
-      <Secion4/>
-      <Section9/>
-      <Secion5/>
-      <Secion13/>
+      <Secion1 secion1IdToScroll={"secion-scroll-id"}/>
+      <Secion2 secion2Scroll={"secion-scroll-id2"}/>
+      <Secion4 secion4Scrolid={"secion-scroll-id4"}/>
+      <Section9 otziv="sectionId"/>
+      <Secion5 videoCours="videoCoursScrioling" />
+      <Secion13 scrollMassengerId={"secion-scroll-massage"}/>
       <Footer/>
-
+      <ExitVideoPopup/>
 
       {/* <Secion3 />
       <Secion6/>

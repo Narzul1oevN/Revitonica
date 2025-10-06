@@ -18,7 +18,7 @@ const CustomAlert = ({ message, onClose }) => {
   );
 };
 
-const Secion4 = () => {
+const Secion4 = ({secion4Scrolid}) => {
   const [showAlert, setShowAlert] = React.useState(false);
 
   // Имитация действия кнопки
@@ -37,7 +37,7 @@ const Secion4 = () => {
 
   return (
     // ИЗМЕНЕНИЕ ЗДЕСЬ: фон секции теперь bg-gray-50
-    <section className="py-8 md:py-12 bg-gray-50 font-sans">
+    <section id={secion4Scrolid} className="py-8 md:py-12 bg-gray-50 font-sans">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         {/*
           Основной контейнер CTA: 
@@ -89,7 +89,7 @@ const Secion4 = () => {
                            {" "}
               <img
                 src={bgImage}
-                alt="Задумавшаяся девушка в очках" // ✅ ИЗМЕНЕНИЕ ЗДЕСЬ: Убраны 'opacity-0' и 'hidden', //                     теперь изображение всегда видимое (но только на больших экранах, как вы и хотели с 'lg:block')
+                alt="" // ✅ ИЗМЕНЕНИЕ ЗДЕСЬ: Убраны 'opacity-0' и 'hidden', //                     теперь изображение всегда видимое (но только на больших экранах, как вы и хотели с 'lg:block')
                 className="w-full max-w-[500px] h-auto object-cover lg:block"
               />
               {/* На мобильных устройствах изображение не показываем, чтобы сохранить место, или показываем меньший элемент. 

@@ -89,9 +89,9 @@ const SocialMediaCard = ({ platform, icon, description, iconUrl, bgColor, link }
 /**
  * Основной компонент Secion13
  */
-const Secion13 = () => {
+const Secion13 = ({scrollMassengerId}) => {
   return (
-    <section className="py-12 bg-gray-50">
+    <section id={scrollMassengerId} className="py-12 bg-gray-50">
       
       {/* Центрированный контейнер */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">

@@ -11,3 +11,6 @@
     --breakpoint-3xl: 1440px; /* большие десктопы */
     --breakpoint-4xl: 1536px; /* очень большие мониторы */
   }
+  html {
+    scroll-behavior: smooth;
+  }
