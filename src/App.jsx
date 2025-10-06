@@ -18,23 +18,25 @@ import Footer from './secions/footer';
 
 const App = () => {
   return (
-    <div className='w-full h-auto'>
+    <div className='w-full h-auto '>
       <Head />
       <Secion1/>
       <Secion2/>
-      <Secion3 />
       <Secion4/>
+      <Section9/>
       <Secion5/>
+      <Secion13/>
+      <Footer/>
+
+
+      {/* <Secion3 />
       <Secion6/>
       <Secion7/>
       <Section8/>
-      <Section9/>
       <Section10/>
       <Secion11/>
       <Secion12/>
-      <Secion13/>
-      <Secion14/>
-      <Footer/>
+      <Secion14/> */}
     </div>
   )
 }

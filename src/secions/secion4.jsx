@@ -1,4 +1,5 @@
 import React from 'react';
+import bgImage from "../assets/www.png"
 
 // Компонент, который выводит кастомное модальное окно вместо alert()
 const CustomAlert = ({ message, onClose }) => {
@@ -70,7 +71,7 @@ const Secion4 = () => {
             {/* --- ЛЕВЫЙ БЛОК: Заголовок и Кнопка --- */}
             <div className="lg:col-span-2 z-10 text-white max-w-2xl">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-                Не знаете, какой видеокурс Ревитоники вам подойдёт?
+                Не знаете, какой видеокурс вам подойдёт?
               </h2>
               <button
                 onClick={handleButtonClick}
@@ -86,12 +87,13 @@ const Secion4 = () => {
               {/* Изображение вставляется с помощью заглушки. 
                   На оригинальном изображении: девушка в очках, задумавшаяся, с вопросительными знаками вокруг.
               */}
-              <img
-                // Использование прозрачного PNG с изображением девушки в очках для лучшего наложения
-                src="https://placehold.co/400x400/59559C/FFFFFF?text=Задумчивая+Девушка"
-                alt="Задумавшаяся девушка в очках"
-                className="w-full max-w-[300px] h-auto object-cover rounded-lg shadow-2xl opacity-0 hidden lg:block" // Скрываем на мобильных, чтобы не перегружать
-              />
+              <img
+                src={bgImage}
+                alt="Задумавшаяся девушка в очках"
+                // ✅ ИЗМЕНЕНИЕ ЗДЕСЬ: Убраны 'opacity-0' и 'hidden',
+                //                     теперь изображение всегда видимое (но только на больших экранах, как вы и хотели с 'lg:block')
+                className="w-full max-w-[500px] h-auto object-cover lg:block" 
+              />
               {/* На мобильных устройствах изображение не показываем, чтобы сохранить место, или показываем меньший элемент. 
                   Оставим только текст и кнопку для мобильных версий для чистоты. */}
             </div>

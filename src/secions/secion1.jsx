@@ -84,50 +84,22 @@ const Secion1 = () => {
           {/* Слайд 1 */}
           <SwiperSlide className="h-full">
             <div
-              className="relative w-full h-full bg-cover bg-center text-white p-8 md:p-12 flex flex-col justify-center"
+              className="relative w-full h-full bg-cover bg-center text-white p-8 md:p-12 flex flex-col justify-start"
               style={{ backgroundImage: `url('${bannerImageUrl}')` }}
             >
               <div className="relative z-10 max-w-lg text-white">
                 <span className="inline-block bg-white text-sm font-semibold px-4 py-1 rounded-md mb-4 text-[#C04245]">
-                  Только до 10 октября
+                Обучающие курсы 
                 </span>
                 <h2 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                  ОСЕННЯЯ РАСПРОДАЖА РЕВИТОНИКИ
+                Расскажу, как зарабатывать удалённо 500₽ в первый же день 
                 </h2>
-                <div className="flex items-baseline gap-4 my-6">
-                  <span className="text-6xl md:text-7xl font-bold text-[#FF5051]">
-                    от 50%
-                  </span>
-                  <span className="text-4xl font-light text-white opacity-70">
-                    |
-                  </span>
-                  <span className="text-5xl md:text-6xl font-bold text-[#FF5051] opacity-90">
-                    х2
-                  </span>
-                </div>
-                <div className="flex gap-10">
-                  <div className="max-w-[150px]">
-                    <p className="font-semibold text-sm">Скидываем</p>
-                    <p className="font-semibold text-sm">цены на курсы</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">Увеличиваем</p>
-                    <p className="font-semibold text-sm">доступ</p>
-                  </div>
-                </div>
-                <p className="text-xs mt-3 opacity-90 text-shadow">
-                  В рассрочку от 1000 руб./мес.*
-                </p>
-                <button className="absolute bottom-10 right-10 w-[90px] h-[90px] bg-white/30 backdrop-blur-sm text-white rounded-full flex flex-col items-center justify-center font-semibold text-sm shadow-xl hover:bg-white/40 transition-all">
-                  Подробнее
-                  <ArrowRightIcon />
-                </button>
               </div>
             </div>
           </SwiperSlide>
 
           {/* Слайд 2 */}
-          <SwiperSlide className="h-full">
+          {/* <SwiperSlide className="h-full">
             <div
               className="relative w-full h-full bg-cover bg-center text-white p-8 md:p-12 flex flex-col justify-center"
               style={{ backgroundImage: `url('${bannerImageUrl}')` }}
@@ -169,7 +141,7 @@ const Secion1 = () => {
                 </button>
               </div>
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
 
         {/* --- СЕКЦИЯ С 3 УРОКАМИ (АДАПТИВНОСТЬ) --- */}
@@ -186,7 +158,7 @@ const Secion1 = () => {
             {/* На больших экранах lg: текст слева, кнопка под ним */}
             <div className="hidden lg:flex flex-col text-left flex-shrink-0">
               <h3 className="text-xl md:text-2xl font-bold text-[#444] max-w-xs leading-snug">
-                Пройдите 3 урока и ощутите моментальный эффект
+              Посмотри бесплатные короткие видео и заработай первые 500₽
               </h3>
               <button
                 className="mt-6 px-10 py-3 text-white font-semibold rounded-md transition-colors shadow-lg"
