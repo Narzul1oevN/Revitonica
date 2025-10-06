@@ -1,0 +1,361 @@
+/* ========================================= */
+/* --- Базовые стили (Mobile First, до 480px) --- */
+/* ========================================= */
+
+.section9-container {
+    padding: 40px 0; /* Уменьшаем вертикальный паддинг */
+    background-color: #f7f9fc;
+}
+
+.section9-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 30px; /* Уменьшаем размер на мобильных */
+    font-weight: 600;
+    color: #0b1a3d;
+    text-align: center; /* Центрируем заголовок на мобильных */
+    margin-bottom: 30px;
+}
+
+.carousel-wrapper {
+    position: relative; 
+    padding: 0 50px; /* Даем место для стрелок */
+}
+
+/* Контейнер карточки отзыва */
+.review-card-content {
+    background-color: #ffffff;
+    border-radius: 20px; 
+    padding: 30px; /* Уменьшаем внутренний отступ */
+    
+    /* УМЕНЬШЕННАЯ МИНИМАЛЬНАЯ ВЫСОТА КАРТОЧКИ (но не фиксированная) */
+    min-height: 380px; 
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Область для скролла текста */
+.review-text-scrollable {
+    /* УМЕНЬШЕННАЯ МАКСИМАЛЬНАЯ ВЫСОТА ДЛЯ Скролла */
+    max-height: 120px; 
+    overflow-y: auto; 
+    padding-right: 15px; 
+    flex-grow: 1; /* Позволяет области расти в оставшееся пространство */
+}
+
+.doctor-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+    padding-bottom: 15px; /* Уменьшаем отступ */
+}
+
+.doctor-image {
+    width: 80px; /* Уменьшаем размер фото */
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Иконка кавычек */
+.quote-icon {
+    position: absolute;
+    font-size: 55px; /* Уменьшаем размер */
+    color: #e0e6f0;
+    top: -10px;
+    left: 65px; 
+    z-index: 1;
+}
+
+/* --- Стилизация кастомных стрелок Swiper --- */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; /* Уменьшаем размер стрелок на мобильных */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f7f9fc; 
+    color: #e8587a; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev-custom { left: 5px; }
+.swiper-button-next-custom { right: 5px; }
+.swiper-button-prev, .swiper-button-next { display: none !important; }
+
+/* ========================================= */
+/* --- АДАПТИВНОСТЬ: Медиа-запросы по вашим брейкпойнтам --- */
+/* ========================================= */
+
+/* @breakpoint-sm: 480px (большие телефоны) */
+@media (min-width: 480px) {
+    .section-title {
+        font-size: 32px;
+    }
+    .review-card-content {
+        min-height: 350px;
+    }
+}
+
+/* @breakpoint-md: 640px (планшеты вертикально) */
+@media (min-width: 640px) {
+    .review-card-content {
+        min-height: 330px;
+    }
+    .review-text-scrollable {
+        max-height: 100px;
+    }
+}
+
+
+/* @breakpoint-lg: 768px (Планшеты горизонтально / Десктоп) */
+/* Swiper переключается на 2 колонки */
+@media (min-width: 768px) {
+    .section-title {
+        text-align: left;
+    }
+    .carousel-wrapper {
+        padding: 0 20px; /* Сужаем область для стрелок */
+    }
+    .review-card-content {
+        padding: 40px;
+        min-height: 400px; /* Устанавливаем более комфортную высоту для двухколоночного макета */
+    }
+    .review-text-scrollable {
+        max-height: 140px; /* Увеличиваем высоту скролла */
+    }
+    .doctor-image {
+        width: 100px;
+        height: 100px;
+    }
+    .quote-icon {
+        font-size: 72px;
+        top: -15px;
+        left: 80px; 
+    }
+    .custom-arrow {
+        width: 50px; /* Возвращаем больший размер стрелок */
+        height: 50px;
+    }
+    .swiper-button-prev-custom { left: -20px; } /* Выносим стрелки за пределы контента */
+    .swiper-button-next-custom { right: -20px; }
+}
+
+/* @breakpoint-2xl: 1280px (Десктопы) */
+@media (min-width: 1280px) {
+    .review-card-content {
+        min-height: 380px; /* Небольшая корректировка для больших экранов */
+    }
+    .review-text-scrollable {
+        max-height: 120px;
+    }
+}
+
+/* ========================================= */
+/* --- Базовые стили (Mobile First, до 768px) --- */
+/* ========================================= */
+
+.section9-container {
+    padding: 30px 0; /* Меньше вертикального отступа */
+    background-color: #f7f9fc;
+}
+
+.section9-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 30px; 
+    font-weight: 600;
+    color: #0b1a3d;
+    text-align: center; 
+    margin-bottom: 25px; /* Меньше отступа */
+}
+
+/* Обертка для карусели и стрелок */
+.carousel-wrapper {
+    position: relative; 
+    padding: 0 50px; /* Отступ для стрелок на мобильных */
+}
+
+/* Контейнер карточки отзыва */
+.review-card-content {
+    background-color: #ffffff;
+    border-radius: 20px; 
+    padding: 25px; /* Меньше внутреннего отступа */
+    
+    /* УМЕНЬШЕННАЯ МИНИМАЛЬНАЯ ВЫСОТА (Mobile) */
+    min-height: 350px; 
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Область для скролла текста */
+.review-text-scrollable {
+    /* УМЕНЬШЕННАЯ МАКСИМАЛЬНАЯ ВЫСОТА ДЛЯ Скролла */
+    max-height: 150px; 
+    overflow-y: auto; 
+    padding-right: 15px; 
+    flex-grow: 1; 
+}
+
+/* Стилизация скроллбара для Webkit (Chrome, Safari, мобильные) */
+.review-text-scrollable::-webkit-scrollbar {
+    width: 6px; /* Ширина скроллбара */
+}
+
+.review-text-scrollable::-webkit-scrollbar-thumb {
+    background-color: #e8587a; /* Розовый цвет скроллбара */
+    border-radius: 3px;
+}
+
+.review-text-scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Цвет фона трека */
+}
+
+/* Информация о докторе */
+.doctor-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+    padding-bottom: 15px; 
+}
+
+.doctor-image {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Иконка кавычек */
+.quote-icon {
+    position: absolute;
+    font-size: 55px; 
+    color: #e0e6f0;
+    top: -10px;
+    left: 65px; 
+    z-index: 1;
+}
+
+/* --- Стилизация кастомных стрелок Swiper --- */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f7f9fc; 
+    color: #e8587a; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev-custom { left: 5px; }
+.swiper-button-next-custom { right: 5px; }
+.swiper-button-prev, .swiper-button-next { display: none !important; }
+
+
+/* ========================================= */
+/* --- АДАПТИВНОСТЬ: Медиа-запросы по вашим брейкпойнтам --- */
+/* ========================================= */
+
+/* @breakpoint-xs: 425px (Начиная с этого размера) */
+@media (min-width: 425px) {
+    .section-title {
+        font-size: 32px;
+    }
+}
+
+/* @breakpoint-sm: 480px */
+@media (min-width: 480px) {
+    .review-card-content {
+        min-height: 330px;
+    }
+    .review-text-scrollable {
+        max-height: 130px;
+    }
+}
+
+/* @breakpoint-md: 640px */
+@media (min-width: 640px) {
+    .review-card-content {
+        min-height: 320px;
+    }
+}
+
+
+/* @breakpoint-lg: 768px (Планшеты горизонтально / Десктоп) */
+/* Swiper переключается на 2 колонки */
+@media (min-width: 768px) {
+    .section-title {
+        text-align: left;
+    }
+    .carousel-wrapper {
+        padding: 0 20px; /* Сужаем область для стрелок */
+    }
+    .review-card-content {
+        padding: 40px;
+        /* КОМФОРТНАЯ ВЫСОТА ДЛЯ 2-КОЛОНОЧНОГО МАКЕТА */
+        min-height: 380px; 
+    }
+    .review-text-scrollable {
+        /* УВЕЛИЧИВАЕМ МЕСТО ДЛЯ ТЕКСТА НА ДЕСКТОПЕ */
+        max-height: 160px; 
+    }
+    .doctor-image {
+        width: 100px;
+        height: 100px;
+    }
+    .quote-icon {
+        font-size: 72px;
+        top: -15px;
+        left: 80px; 
+    }
+    .custom-arrow {
+        width: 50px; 
+        height: 50px;
+    }
+    /* Выносим стрелки за пределы контента */
+    .swiper-button-prev-custom { left: -20px; } 
+    .swiper-button-next-custom { right: -20px; }
+}
+
+/* @breakpoint-3xl: 1440px (Большие десктопы) */
+@media (min-width: 1440px) {
+    .review-card-content {
+        min-height: 350px; 
+    }
+    .review-text-scrollable {
+        max-height: 140px;
+    }
+}
