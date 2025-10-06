@@ -101,7 +101,7 @@ const Section9 = () => {
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         {/* Заголовок */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1a3d] text-center mb-8 md:mb-12">
-          Отзывы студентов о курсе
+          Отзывы о курсе
         </h2>
 
         {/* Обертка карусели со стрелками */}

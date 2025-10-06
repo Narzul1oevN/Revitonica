@@ -10,7 +10,7 @@ const socialMediaData = [
     // ⭐️ ИЗМЕНЕНИЕ 2: Замена imageUrl на iconUrl для более простого управления иконкой
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/2111/2111646.png', // Иконка Telegram
     tag: 'telegram',
-    bgColor: 'bg-blue-500', // Синий для Telegram
+    bgColor: 'bg-[#e8587a]', // Синий для Telegram
     link: '#' // Добавьте реальную ссылку
   },
   {
@@ -20,7 +20,7 @@ const socialMediaData = [
     description: 'Быстрый ответ на вопросы по заказу, оплате, доступам к курсам и технической поддержке.',
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/733/733585.png', // Иконка WhatsApp
     tag: 'whatsapp',
-    bgColor: 'bg-green-500', // Зеленый для WhatsApp
+    bgColor: 'bg-[#e8587a]', // Зеленый для WhatsApp
     link: '#'
   },
   {
@@ -30,7 +30,7 @@ const socialMediaData = [
     description: 'Официальные запросы, партнерство, сотрудничество, подробные обращения к администрации.',
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/542/542689.png', // Иконка Email
     tag: 'email',
-    bgColor: 'bg-red-500', // Красный для Email
+    bgColor: 'bg-[#e8587a]', // Красный для Email
     link: '#'
   }
 ];
@@ -52,7 +52,7 @@ const SocialMediaCard = ({ platform, icon, description, iconUrl, bgColor, link }
       {/* ⭐️ ИЗМЕНЕНИЕ 5: Круглый контейнер с иконкой вместо квадратного изображения */}
       <div className="p-6 flex justify-center items-center">
         <div 
-          className={`w-28 h-28 rounded-full ${bgColor} flex items-center justify-center p-2 shadow-inner`}
+          className={`w-28 h-28 rounded-full flex items-center justify-center p-2 shadow-inner`}
         >
           <div 
              className="w-full h-full bg-contain bg-no-repeat bg-center"
