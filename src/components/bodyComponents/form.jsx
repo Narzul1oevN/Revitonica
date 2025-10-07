@@ -84,7 +84,7 @@ const Form = ({formId}) => {
   };
 
   return (
-    <div id={formId} className="min-h-screen bg-gray-50 flex items-center justify-center sm:pt-0 sm:pb-0">
+    <div id={formId} className="h-auto mb-[30px] bg-gray-50 flex items-center justify-center sm:pt-0 sm:pb-0">
       
       {/* Форма */}
       <form onSubmit={handleSubmit} className="w-full max-w-md bg-white shadow-xl rounded-xl p-8 flex flex-col gap-6">

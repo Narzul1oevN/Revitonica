@@ -60,7 +60,7 @@ const features = [
 // Основной компонент секции (без изменений)
 const Secion2 = ({ secion2Scroll }) => {
   return (
-    <div id={secion2Scroll} className="bg-gray-50 py-2 md:py-20 min-h-screen">
+    <div id={secion2Scroll} className="bg-gray-50 py-2 h-auto mt-[10xp] mb-[10px]">
       <section className="m-auto">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           {/* Адаптивная сетка карточек */}
