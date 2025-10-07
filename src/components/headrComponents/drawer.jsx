@@ -70,7 +70,7 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №1
+              Главная
             </a>
 
             <a
@@ -78,7 +78,7 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №2
+              Возможности
             </a>
 
             <a
@@ -86,7 +86,7 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №3
+              Подбор
             </a>
 
             <a
@@ -94,7 +94,7 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №4
+              Отзывы
             </a>
 
             <a
@@ -102,7 +102,7 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №5
+              Курсы
             </a>
 
             <a
@@ -110,7 +110,15 @@ const MobileDrawer = ({ isOpen, onClose }) => {
               className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
               onClick={handleLinkClick} // <-- Изменение
             >
-              Секция №6
+              Преимущества
+            </a>
+
+            <a
+              href="#formIdScrolling"
+              className="block px-4 py-2 text-[18px] font-medium text-gray-700 hover:bg-gray-100 hover:text-[#2d4156] rounded-lg transition-colors"
+              onClick={handleLinkClick} // <-- Изменение
+            >
+              Контакты
             </a>
           </div>
         </div>
@@ -170,38 +178,45 @@ const Header = () => {
               href="#secion-scroll-id"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №1
+              Главная
             </a>
             <a
               href="#secion-scroll-id2"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №2
+              Возможности
             </a>
             <a
               href="#secion-scroll-id4"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №3
+              Подбор
             </a>
             <a
               href="#sectionId"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №4
+              Отзывы
             </a>
             <a
               href="#videoCoursScrioling"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №5
+              Курсы
             </a>
 
             <a
               href="#secion-scroll-id8"
               className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
             >
-              Секция №6
+              Преимущества
+            </a>
+
+            <a
+              href="#formIdScrolling"
+              className="text-gray-700 hover:text-[#2d4156] transition-colors text-base font-medium"
+            >
+              Контакты
             </a>
           </div>
         </div>

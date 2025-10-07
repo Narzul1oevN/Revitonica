@@ -10,12 +10,13 @@ const footerData = {
     {
       title: 'Обучение',
       links: [
-        { label: 'Секция №1', href: '#secion-scroll-id' },
-        { label: 'Секция №2', href: '#secion-scroll-id2' },
-        { label: 'Секция №3', href: '#secion-scroll-id4' },
-        { label: 'Секция №4', href: '#sectionId' },
-        { label: 'Секция №5', href: '#videoCoursScrioling' },
-        { label: 'Секция №6', href: '#secion-scroll-id8' },
+        { label: 'Главная', href: '#secion-scroll-id' },
+        { label: 'Возможности', href: '#secion-scroll-id2' },
+        { label: 'Подбор', href: '#secion-scroll-id4' },
+        { label: 'Отзывы', href: '#sectionId' },
+        { label: 'Курсы', href: '#videoCoursScrioling' },
+        { label: 'Преимущества', href: '#secion-scroll-id8' },
+        { label: 'Контакты', href: '#formIdScrolling' },
       ],
     },
     // Тут могли бы быть другие секции: 'Документы', 'Ревитоника', если бы они были в исходных данных

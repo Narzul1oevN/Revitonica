@@ -123,10 +123,10 @@ const BenefitCard = ({ data }) => {
 };
 
 // Главный компонент
-const Section8 = () => {
+const Section8 = ({secion8Title}) => {
   return (
     // Общий контейнер секции с легким серым фоном
-    <section className="py-12 md:py-20 bg-slate-50 font-sans">
+    <section id={secion8Title} className="py-12 md:py-20 bg-slate-50 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-extrabold text-[#0b1a3d] text-start mb-10 md:mb-16">
           Наши преимущества:

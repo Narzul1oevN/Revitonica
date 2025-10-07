@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // 1. Импортированные изображения
 import first from "../assets/first.png";
 import second from "../assets/second.png";
 import third from "../assets/third.png";
 
-// Обновленные Настройки для каждого блока
-// Теперь в них есть поле 'iconImage' для пути к изображению
+// ОБРАТИТЕ ВНИМАНИЕ: Вам нужно создать и импортировать этот хук
+// или заменить его на свою логику определения ширины экрана.
+// Я предоставляю базовую реализацию для примера:
+
+// ------------------------------------------------------------------
+// ⚠️ ВАЖНО: Хук для получения ширины окна (пример)
+// ------------------------------------------------------------------
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
+};
+// ------------------------------------------------------------------
+
+
+// Обновленные Настройки для каждого блока (без изменений)
 const features = [
+  // ... ваш массив features
   {
     title: "Доступно",
     description:
@@ -14,16 +35,16 @@ const features = [
     buttonText: "Выбрать курс",
     buttonLink: "#videoCoursScrioling",
     iconColor: "text-blue-500",
-    iconImage: second, // <-- Добавлено изображение
+    iconImage: second,
   },
   {
     title: "Эффективно",
     description:
-      "Ты  сможешь  зарабатывать  до  тысячи  $  в  месяц,  даже  не  углубляясь  в  программирование.    Доказанно  результатами  учеников",
+      "Ты  сможешь  зарабатывать  до  тысячи  $  в  месяц,  даже  не  углубляясь  в  программирование.    Доказанно  результатами  учеников",
     buttonText: "Смотреть отзывы",
     buttonLink: "#sectionId",
     iconColor: "text-green-500",
-    iconImage: first, // <-- Добавлено изображение
+    iconImage: first,
   },
   {
     title: "Безопасно",
@@ -32,7 +53,7 @@ const features = [
     buttonText: "Читать статью",
     buttonLink: "#",
     iconColor: "text-teal-500",
-    iconImage: third, // <-- Добавлено изображение
+    iconImage: third,
   },
 ];
 
@@ -57,10 +78,14 @@ const Secion2 = ({ secion2Scroll }) => {
 };
 
 // ----------------------------------------------------------------------------------
-// ⭐️ КОМПОНЕНТ КАРТОЧКИ С АДАПТИВНЫМ GLASS EFFECT МАКЕТОМ
+// ⭐️ МОДИФИЦИРОВАННЫЙ КОМПОНЕНТ КАРТОЧКИ
 // ----------------------------------------------------------------------------------
 
 const FeatureCard = ({ feature }) => {
+  // Получаем текущую ширину окна
+  const width = useWindowWidth();
+  const isDesktop = width >= 768; // Используем ваш брейкпойнт (lg: 768px)
+
   const glassmorphismStyle = {
     backgroundColor: "rgba(255, 255, 255, 0.074)",
     border: "1px solid white",
@@ -68,21 +93,30 @@ const FeatureCard = ({ feature }) => {
     WebkitBackdropFilter: "blur(20px)",
   };
 
-  // Декоративные стили (без изменений)
-  const beforeStyle = {
+  // 1. Базовые стили для ::before
+  const baseBeforeStyle = {
     content: '""',
     position: 'absolute',
-    backgroundColor: "rgba(0, 128, 0, 0.6)", // более насыщенный зелёный
-    width: "4rem",
-    height: "7rem", // удлинённая форма
-    borderRadius: "60% 40% 60% 40% / 50% 60% 40% 50%", // сложная форма радиуса
-    transform: "rotate(-20deg)", // лёгкий наклон
+    backgroundColor: "rgba(0, 128, 0, 0.6)", 
+    
+    // Уменьшим размер на мобильных, чтобы избежать обрезки, как вы просили ранее
+    width: isDesktop ? "4rem" : "2.5rem", 
+    height: isDesktop ? "7rem" : "4rem", 
+
+    borderRadius: "60% 40% 60% 40% / 50% 60% 40% 50%", 
+    transform: "rotate(-20deg)", 
     top: "15%",
-    right: "-5%",
-    boxShadow: "0 0 10px rgba(0, 100, 0, 0.3)", // мягкая тень
+    
+    // 2. ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ 'right'
+    right: isDesktop ? "-5%" : "-1%", // Десктоп: -5%, Мобильный: 0%
+    
+    boxShadow: "0 0 10px rgba(0, 100, 0, 0.3)", 
   };
   
-
+  // 3. Создаем финальный beforeStyle объединяя базовый и динамический
+  const beforeStyle = baseBeforeStyle;
+  
+  // Декоративные стили (без изменений)
   const afterStyle = {
     content: '""',
     backgroundColor: "transparent",
@@ -99,7 +133,7 @@ const FeatureCard = ({ feature }) => {
       {/* ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ */}
       <div
         className="absolute z-0"
-        style={beforeStyle}
+        style={beforeStyle} // <-- Используем динамический beforeStyle
       ></div>
       <div
         className="absolute z-0"
@@ -124,7 +158,7 @@ const FeatureCard = ({ feature }) => {
         <div className={`relative z-10 flex-shrink-0 mb-0 lg:mb-6 p-4`}>
           {/* Использование импортированного изображения */}
           <img
-            src={feature.iconImage} // <-- Используем путь из массива features
+            src={feature.iconImage} 
             alt={feature.title}
             // Устанавливаем размер изображения
             className={`w-20 h-20`} 
