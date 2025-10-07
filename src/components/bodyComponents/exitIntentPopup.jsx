@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // Константа для ключа в localStorage и максимального количества показов
 const POPUP_COUNT_KEY = 'exitPopupShowCount';
-const MAX_SHOW_COUNT = 2; // Максимальное количество показов
+const MAX_SHOW_COUNT = 3; // Максимальное количество показов
 
 // ... (остальной код для randomVideoIds и getRandomVideoUrl можно удалить, если вы используете свой ID,
 // но я оставлю его для совместимости, хотя в текущей версии он не используется)
