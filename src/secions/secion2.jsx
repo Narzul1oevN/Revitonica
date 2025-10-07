@@ -14,7 +14,7 @@ const features = [
     buttonText: "Выбрать курс",
     buttonLink: "#videoCoursScrioling",
     iconColor: "text-blue-500",
-    iconImage: first, // <-- Добавлено изображение
+    iconImage: second, // <-- Добавлено изображение
   },
   {
     title: "Эффективно",
@@ -23,7 +23,7 @@ const features = [
     buttonText: "Смотреть отзывы",
     buttonLink: "#sectionId",
     iconColor: "text-green-500",
-    iconImage: second, // <-- Добавлено изображение
+    iconImage: first, // <-- Добавлено изображение
   },
   {
     title: "Безопасно",
@@ -63,7 +63,7 @@ const Secion2 = ({ secion2Scroll }) => {
 const FeatureCard = ({ feature }) => {
   const glassmorphismStyle = {
     backgroundColor: "rgba(255, 255, 255, 0.074)",
-    border: "1px solid rgba(255, 255, 255, 0.222)",
+    border: "1px solid white",
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
   };
@@ -71,13 +71,17 @@ const FeatureCard = ({ feature }) => {
   // Декоративные стили (без изменений)
   const beforeStyle = {
     content: '""',
-    backgroundColor: "rgba(0, 255, 0, 0.3)",
-    borderRadius: "50%",
-    width: "6rem",
-    height: "6rem",
-    top: "30%",
-    right: "7%",
+    position: 'absolute',
+    backgroundColor: "rgba(0, 128, 0, 0.6)", // более насыщенный зелёный
+    width: "4rem",
+    height: "7rem", // удлинённая форма
+    borderRadius: "60% 40% 60% 40% / 50% 60% 40% 50%", // сложная форма радиуса
+    transform: "rotate(-20deg)", // лёгкий наклон
+    top: "15%",
+    right: "-5%",
+    boxShadow: "0 0 10px rgba(0, 100, 0, 0.3)", // мягкая тень
   };
+  
 
   const afterStyle = {
     content: '""',
