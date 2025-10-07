@@ -212,7 +212,6 @@ const Secion1 = ({secion1IdToScroll}) => {
                   modules={[Pagination]}
                   slidesPerView={1.2} // Показываем 1.2 карточки, чтобы намекнуть на скролл
                   spaceBetween={16} // Увеличим spaceBetween
-                  pagination={{ clickable: true }}
                   centeredSlides={true} // Центрируем активный слайд
                   className="h-48 pb-8" // pb-8 для пагинации
                 >

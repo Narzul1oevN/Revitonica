@@ -100,7 +100,7 @@ const Section9 = ({otziv}) => {
     <section id={otziv} className="bg-[#f7f9fc] py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         {/* Заголовок */}
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1a3d] text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1a3d] text-start mb-8 md:mb-12">
           Отзывы о курсе
         </h2>
 

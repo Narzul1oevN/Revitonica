@@ -16,6 +16,7 @@ import Secion13 from './secions/secion13';
 import Secion14 from './secions/secion14';
 import Footer from './secions/footer';
 import ExitVideoPopup from './components/bodyComponents/exitIntentPopup';
+import Form from './components/bodyComponents/form';
 
 const App = () => {
   return (
@@ -26,14 +27,15 @@ const App = () => {
       <Secion4 secion4Scrolid={"secion-scroll-id4"}/>
       <Section9 otziv="sectionId"/>
       <Secion5 videoCours="videoCoursScrioling" />
-      <Secion13 scrollMassengerId={"secion-scroll-massage"}/>
+      <Section8 secion8Title={"secion-scroll-id8"}/>
+      <Form/>
       <Footer/>
       <ExitVideoPopup/>
 
+      {/* <Secion13 scrollMassengerId={"secion-scroll-massage"}/> */}
       {/* <Secion3 />
       <Secion6/>
       <Secion7/>
-      <Section8/>
       <Section10/>
       <Secion11/>
       <Secion12/>

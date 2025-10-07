@@ -203,15 +203,9 @@ const Secion5 = ({videoCours}) => {
         
         {/* Заголовок секции */}
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1a3d]">
             Видеокурсы
           </h2>
-          <a href="#" onClick={(e) => { e.preventDefault(); customAlert("Переход на страницу со всеми курсами"); }} className="flex items-center text-gray-500 font-semibold hover:text-gray-700 transition">
-            Смотреть все
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1 text-[#FF5051]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-            </svg>
-          </a>
         </div>
         
         {/* Контейнер Swiper */}
