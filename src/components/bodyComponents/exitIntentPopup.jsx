@@ -1,78 +1,222 @@
 import React, { useState, useEffect } from 'react';
 
-// Константа для ключа в localStorage и максимального количества показов
-const POPUP_COUNT_KEY = 'exitPopupShowCount';
-const MAX_SHOW_COUNT = 3; // Максимальное количество показов
+// ====================================================================
+// КОНСТАНТЫ
+// ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ!
+// ====================================================================
 
-// ... (остальной код для randomVideoIds и getRandomVideoUrl можно удалить, если вы используете свой ID,
-// но я оставлю его для совместимости, хотя в текущей версии он не используется)
+// Ключ для localStorage и максимальное количество показов
+const POPUP_COUNT_KEY = 'exitFormPopupShowCount';
+const MAX_SHOW_COUNT = 1; // Максимальное количество показов
 
-const randomVideoIds = [
-    '5qap5aO4i9A', 
-    't5QpA_T4-K4', 
-    'n_Dv4JMiwK8', 
-    'H48i_iP49V4', 
-];
+// URL веб-приложения Google Apps Script
+const GOOGLE_FORM_URL = "https://script.google.com/macros/s/AKfycbwlppllR6Tal8HhIw3AbE5o-CwejkwBljZvhcLa-vJNG3hA4PPYTvH_r3Fe0aVeL-Mg/exec";
+// ID полей ввода из Google Forms (name атрибуты)
+const ENTRY_NAME_ID = 'entry.1234567890'; // ID поля для имени
+const ENTRY_CONTACT_ID = 'entry.9876543210'; // ID поля для контакта
 
-const getRandomVideoUrl = () => {
-    const randomId = randomVideoIds[Math.floor(Math.random() * randomVideoIds.length)];
-    return `https://www.youtube.com/embed/${randomId}`;
+// ====================================================================
+// КОМПОНЕНТ ФОРМЫ (ВНУТРИ ПОПАПА)
+// ====================================================================
+
+const ExitIntentForm = ({ onClose }) => {
+    // Состояние для хранения значений полей
+    const [formData, setFormData] = useState({
+        name: '',
+        contact: '',
+    });
+
+    // Состояние для Toast-уведомления
+    const [toast, setToast] = useState({
+        isVisible: false,
+        message: '',
+        type: 'success', // 'success' или 'error'
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Функция для отображения Toast-уведомления
+    const showToast = (message, type = 'success', duration = 4000) => {
+        setToast({ isVisible: true, message, type });
+        // Автоматическое скрытие тоста
+        setTimeout(() => {
+            setToast((t) => ({ ...t, isVisible: false }));
+        }, duration);
+    };
+
+    // Обновление состояния при вводе данных
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    // Функция для отправки данных
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setToast({ ...toast, isVisible: false }); // Скрываем предыдущий тост
+
+        if (!formData.name || !formData.contact) {
+            showToast('Пожалуйста, заполните оба поля.', 'error');
+            setIsSubmitting(false);
+            return;
+        }
+
+        // 1. Создаем объект URLSearchParams для кодирования данных формы
+        const data = new URLSearchParams();
+        data.append(ENTRY_NAME_ID, formData.name);
+        data.append(ENTRY_CONTACT_ID, formData.contact);
+
+        try {
+            // 2. Отправляем POST-запрос на URL Google Apps Script
+            await fetch(GOOGLE_FORM_URL, {
+                method: 'POST',
+                body: data,
+                // Важно: для Google Apps Script используем 'no-cors'
+                mode: 'no-cors', 
+            });
+
+            // Отправка прошла успешно
+            showToast('✅ Данные отправлены! Скоро свяжемся с вами.', 'success');
+            setFormData({ name: '', contact: '' }); // Очистка формы
+            
+            // ⭐ Дополнительно: Закрываем попап после успешной отправки
+            setTimeout(onClose, 2000); 
+
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            showToast('❌ Произошла ошибка при отправке данных.', 'error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="w-full h-full bg-white p-8 flex flex-col justify-center gap-6">
+            <h2 className="text-3xl font-bold text-gray-800 text-center">
+                Подождите! Не уходите! ✋
+            </h2>
+            <p className="text-center text-gray-600 mb-4 text-lg">
+                Оставьте контакты, чтобы получить специальное предложение!
+            </p>
+            
+            <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Ваше имя"
+                required
+                className="w-full px-5 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors"
+            />
+            
+            <input
+                type="text"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+                placeholder="Телефон или Email"
+                required
+                className="w-full px-5 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors"
+            />
+            
+            <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-3 mt-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200 font-semibold text-lg disabled:opacity-60 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+            >
+                {isSubmitting ? 'Отправка...' : 'Получить предложение'}
+            </button>
+
+            <div className="text-center text-sm text-gray-500 mt-2">
+                Мы гарантируем конфиденциальность ваших данных.
+            </div>
+
+            {/* =============================================== */}
+            {/* ⭐ КОМПОНЕНТ TOAST-УВЕДОМЛЕНИЯ */}
+            {/* Используем портал, если это не попап, но для простоты оставляем внутри */}
+            {/* =============================================== */}
+            <div 
+                className={`fixed bottom-5 left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-2xl transition-all duration-300 z-[10000] 
+                    w-[80%] max-w-sm 
+                    ${toast.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}
+                    ${toast.type === 'success' ? 'bg-green-500' : 'bg-red-500'}`
+                }
+            >
+                <p className="text-white font-medium flex items-center gap-3">
+                    {toast.type === 'success' ? (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    ) : (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    )}
+                    <span className="text-base">{toast.message}</span>
+                </p>
+            </div>
+        </form>
+    );
 };
 
-const ExitVideoPopup = () => {
-    // ⭐️ ИСПОЛЬЗУЙТЕ СВОЙ ID ВИДЕО ЗДЕСЬ (или getRandomVideoUrl())
-    const [videoUrl] = useState(getRandomVideoUrl()); 
-    // Если вы хотите свое видео, замените строку выше на:
-    // const YOUR_YOUTUBE_VIDEO_ID = 'ВАШ_ID_ВИДЕО_ЗДЕСЬ';
-    // const [videoUrl] = useState(`https://www.youtube.com/embed/${YOUR_YOUTUBE_VIDEO_ID}`);
-    
+// ====================================================================
+// ГЛАВНЫЙ КОМПОНЕНТ ПОПАПА
+// ====================================================================
+
+const ExitFormPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
 
+    const handleClose = () => {
+        setIsAnimating(false);
+        // Задержка для анимации закрытия (300ms)
+        setTimeout(() => setIsVisible(false), 300);
+    };
+
     useEffect(() => {
-        // 1. Проверяем счетчик при загрузке
         let currentCount = parseInt(localStorage.getItem(POPUP_COUNT_KEY) || '0', 10);
+        let eventListenerAdded = true;
 
         const handleMouseLeave = (event) => {
-            // 2. Сначала проверяем, не превышен ли лимит
-            if (currentCount >= MAX_SHOW_COUNT) {
-                // Если лимит превышен, просто выходим и удаляем обработчик
-                document.removeEventListener('mouseleave', handleMouseLeave);
+            // Проверяем, не превышен ли лимит или попап уже открыт
+            if (currentCount >= MAX_SHOW_COUNT || isVisible) {
+                if (currentCount >= MAX_SHOW_COUNT && eventListenerAdded) {
+                    document.removeEventListener('mouseleave', handleMouseLeave);
+                    eventListenerAdded = false;
+                }
                 return;
             }
             
-            // Если курсор уходит вверх (exit intent) и попап не виден
-            if (event.clientY < 20 && !isVisible) {
-                // 3. Увеличиваем счетчик и сохраняем его
+            // Если курсор уходит вверх (exit intent)
+            if (event.clientY < 20) {
+                // Увеличиваем счетчик и сохраняем его
                 currentCount += 1;
                 localStorage.setItem(POPUP_COUNT_KEY, currentCount.toString());
                 
-                // 4. Показываем попап
+                // Показываем попап
                 setIsVisible(true);
+                // Задержка для запуска анимации после того, как попап отрендерится
                 setTimeout(() => setIsAnimating(true), 10);
                 
-                // 5. Если это был второй (последний) показ, удаляем обработчик
-                if (currentCount >= MAX_SHOW_COUNT) {
+                // Если лимит достигнут, удаляем обработчик, чтобы он не срабатывал больше
+                if (currentCount >= MAX_SHOW_COUNT && eventListenerAdded) {
                     document.removeEventListener('mouseleave', handleMouseLeave);
+                    eventListenerAdded = false;
                 }
             }
         };
 
+        // Добавляем обработчик
         document.addEventListener('mouseleave', handleMouseLeave);
-
-        // Функция очистки (cleanup) - удаляем обработчик при демонтаже или повторном запуске, 
-        // если он еще существует
+        
+        // Функция очистки (cleanup)
         return () => {
-             // Проверяем, был ли обработчик уже удален внутри handleMouseLeave, 
-             // и если нет, удаляем его
-             document.removeEventListener('mouseleave', handleMouseLeave);
+            if (eventListenerAdded) {
+                document.removeEventListener('mouseleave', handleMouseLeave);
+            }
         };
-    }, [isVisible]); // Зависимость от isVisible нужна для корректной логики показа/скрытия
-
-    const handleClose = () => {
-        setIsAnimating(false);
-        setTimeout(() => setIsVisible(false), 300);
-    };
+    }, [isVisible]); 
+    // Зависимость от isVisible гарантирует, что мы не откроем попап дважды, 
+    // если пользователь быстро уведет мышь, а также позволяет логике cleanup работать корректно.
 
     if (!isVisible) {
         return null;
@@ -80,7 +224,7 @@ const ExitVideoPopup = () => {
 
     const modalClasses = `
         relative bg-white rounded-xl shadow-2xl p-0 
-        w-[90vw] h-[500px] 
+        w-[90vw] max-w-lg min-h-[450px] 
         transition-all duration-300 ease-in-out transform 
         ${isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}
     `;
@@ -88,20 +232,20 @@ const ExitVideoPopup = () => {
     const overlayClasses = `
         fixed inset-0 z-[9999] flex items-center justify-center p-4 
         transition-opacity duration-300 
-        ${isAnimating ? 'bg-black/80 opacity-100' : 'bg-black/0 opacity-0 pointer-events-none'}
+        ${isAnimating ? 'bg-black/70 opacity-100' : 'bg-black/0 opacity-0 pointer-events-none'}
     `;
 
     return (
         <div 
             className={overlayClasses} 
-            onClick={handleClose} 
+            onClick={handleClose} // Закрытие при клике на оверлей
         >
             <div 
                 className={modalClasses} 
-                onClick={(e) => e.stopPropagation()} 
+                onClick={(e) => e.stopPropagation()} // Предотвращаем закрытие при клике внутри модального окна
             >
                 <button 
-                    className="absolute top-3 right-3 text-gray-800 hover:text-gray-500 text-3xl z-20 p-2"
+                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-800 text-4xl z-20 p-2 leading-none"
                     onClick={handleClose} 
                     aria-label="Закрыть"
                 >
@@ -109,20 +253,11 @@ const ExitVideoPopup = () => {
                 </button>
                 
                 <div className="w-full h-full relative overflow-hidden rounded-xl">
-                    <iframe
-                        src={`${videoUrl}?autoplay=1&rel=0`} 
-                        title="Exit Intent Video Offer"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        className="w-full h-full object-cover"
-                    ></iframe>
-                    <div className="absolute top-0 left-0 w-full p-4 bg-black/50 text-white text-center text-lg font-semibold">
-                        Не упустите это! Смотрите короткое видео
-                    </div>
+                    <ExitIntentForm onClose={handleClose} />
                 </div>
             </div>
         </div>
     );
 };
 
-export default ExitVideoPopup;
+export default ExitFormPopup;

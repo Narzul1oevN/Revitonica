@@ -230,6 +230,14 @@ const Secion5 = ({videoCours}) => {
               },
               // На экранах >= 768px (десктоп)
               768: {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                centeredSlides: true, // Ключевое свойство для центрирования на мобильных
+                // Добавляем отступы контейнера для центрирования
+                slidesOffsetBefore: 20, 
+                slidesOffsetAfter: 20,
+              },
+              1024: {
                 slidesPerView: 2,
                 spaceBetween: 24,
                 centeredSlides: false, // На десктопе не центрируем
